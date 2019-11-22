@@ -1,13 +1,28 @@
-from models.user import User
+from Models.client import Client
 
-def create_user(email, password, f_name, l_name):
+def create_user(email, id, password,name):
     # 1) Check if email exists in the DB
     # 2) Hash the password
-
     # 3) Create the User object
-    new_user = User(email, password, f_name, l_name)
+    # new_user = User(email, password, f_name, l_name)
     # 4) Save to the database
-    return new_user.save()
+    # return new_user.save()
+    new_user = Client(
+        email=data['email'],
+        id=data['id'],
+        password=data['password123'],
+        name=data['name']
+        
+    )
+    try:
+        new_user.save()
+        message = {
+            'Message': f' User was saved successfully'
+        }
+        return message, 200
+    except Exception as e:
+        return str(e), 400
+
 
 def delete_user(id):
     # Grab user from DB

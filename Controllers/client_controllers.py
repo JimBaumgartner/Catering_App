@@ -1,7 +1,7 @@
 from flask import Blueprint, request, Response, json
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-from services.event_service import new_event, fetch_events, fetch_one_event, edit_event, delete_event
+from Services.event_services import new_event, fetch_events, fetch_one_event, edit_event, delete_event
 from models.event import Event
 
 

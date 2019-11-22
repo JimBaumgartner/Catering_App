@@ -1,10 +1,10 @@
-from models.event import Event, EventSchema
+from Models.event import Event, EventSchema
 from datetime import datetime
 
 event_schema = EventSchema()
 
 def new_event(data, user):
-    new_post = Blog(
+    new_post = Event(
         title=data['title'],
         content=data['content'],
         user_id=user,
@@ -14,7 +14,7 @@ def new_event(data, user):
     try:
         new_post.save()
         message = {
-            'Message': f'Event post was saved successfully'
+            'Message': f'Event was saved successfully'
         }
         return message, 200
     except Exception as e:

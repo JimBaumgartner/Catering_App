@@ -1,5 +1,5 @@
 from flask_jwt_extended import JWTManager
-from .auth_controller import auth_blueprint
-from .blog_controller import blog_controller
+from Controllers.auth_controller import auth_blueprint
+from Controllers.event_controllers import event_controller
 
 jwt = JWTManager()

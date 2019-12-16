@@ -2,13 +2,13 @@ from . import db  #importing from . (one level up) Models/__init__ where we rena
 from datetime import datetime  #importing library
 from marshmallow import Schema, fields  #importing library
 
-class Event(db.model):
+class Event(db.Model):
   __tablename__ = 'events'  #defined table name
   id = db.Column(db.Integer, primary_key=True)
   title= db.Column(db.String(30), nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-  date_created = db.Column(db.Datetime)
-  last_modified= db.Column(db.Datetime)
+  date_created = db.Column(db.DateTime)
+  last_modified= db.Column(db.DateTime)
 
 
 
@@ -41,10 +41,8 @@ def get_all_events():
 def get_one_event(post_id):
   return Event.query.filter_by(id=post_id).first()
 
-class ClientSchema(Schema):
-  id = fields.Int(dump_only=True)
-  title= fields.Str(required=True)
-  content = fields.Str(required=True)
-  user_id = fields.Str(required=True)
-  date_created = fields.Datetime(dump_only=True)
-  last_modified= fields.Datetime(dump_only=True)
+class EventSchema(Schema):
+    id = fields.Int(dump_only=True)
+    user_id = fields.Str(required=True)
+    date_created = fields.DateTime(dump_only=True)
+    last_modified = fields.DateTime(dump_only=True)

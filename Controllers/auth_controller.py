@@ -1,7 +1,8 @@
 from flask import Blueprint, request
 from flask_jwt_extended import create_access_token
 from Models.client import create_user
-from flask_login import flask_logout
+from Services import bcrypt
+from Services.client_services import create_user
 
 auth_blueprint = Blueprint('auth_api', __name__)  #createing namespace for he auth 
 # blueprint to be hit brining in that namnespace,  ie setting a name for it,  __name__ 
@@ -23,7 +24,7 @@ def register():
 
 
 
-@app.route("/login", methods=['POST'])
+@auth_blueprint.route("/login", methods=['POST'])
 def login():
     body = request.json  # grabbing the data from the body of the request in a json format
 

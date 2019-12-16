@@ -1,9 +1,9 @@
-from flask import Flask
+from flask import Flask, Blueprint, request
 from Models import db
-from flask import Blueprint, request
 from flask_jwt_extended import create_access_token
 from Services import bcrypt
-from Models import SQLAlchemy
+
+
 from Controllers import jwt , auth_blueprint, event_controller
 
 
@@ -15,7 +15,7 @@ bcrypt.init_app(app)
 jwt.init_app(app)
 
 
-app.register_blueprint(auth_blueprint, url_prefix="/auth")
+app.register_blueprint(auth_controller, url_prefix="/auth")
 app.register_blueprint(event_controller, url_prefix="/blog")
 
 if __name__ == "__main__":
